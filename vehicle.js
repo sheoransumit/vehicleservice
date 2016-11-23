@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var Category = require('./categories');
+var Models = require('./models');
 
-var vehicleSchema = {
+var vehicleSchema = new Schema({
   _id: { type: String },
   date: {
     type: Date, 
@@ -11,8 +11,13 @@ var vehicleSchema = {
     type: String,
     required: true 
   },
-  category: Category.categoriesSchema
-};
+  models: Models.modelsSchema
+});
 
-module.exports = new mongoose.Schema(vehicleSchema);
-module.exports.vehicleSchema = vehicleSchema;
+var Vehicle = mongoose.model('Vehicle', vehicleSchema);
+
+vehicleSchema.methods.findSameCompany = function(cb) {
+  return this.model('Vehicle').find({ models.company: this.models.company }, cb);
+};
+// module.exports = new mongoose.Schema(vehicleSchema);
+// module.exports.vehicleSchema = vehicleSchema;
