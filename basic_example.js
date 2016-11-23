@@ -13,6 +13,12 @@ Companies.findOneAndUpdate(query, req.newData, {upsert:true}, function(err, doc)
 
 // Then generate pricelist(model specific) and print a bill with total amount as backend calculation.
 
+// Search vehicle by numberplate
+var Vehicle = mongoose.model('Vehicle', vehicleSchema);
+Vehicle.findByNumberPlate('MH02CB1212', function(err, vehicles) {
+  console.log(vehicles);
+});
+
 // Query to get all numberplates with specific model and store it in modelvehicles schema
 // var Vehicles = require('./vehicle');
 var Vehicle = mongoose.model('Vehicle', vehicleSchema);
