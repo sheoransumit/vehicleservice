@@ -2,10 +2,10 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
-var companiesSchema = require('./companies');
+var Companies = require('./companies');
 
-var query = {'company':tesla};
-req.newData.company = tesla;
+var query = {'companies.company':tesla};
+req.newData.companies.company = tesla;
 Companies.findOneAndUpdate(query, req.newData, {upsert:true}, function(err, doc){
     if (err) return res.send(500, { error: err });
     return res.send("succesfully saved");
