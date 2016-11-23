@@ -1,6 +1,6 @@
 // First We add a company to companies, than category followed by model and vehicle registration.
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/test');
 
 var Companies = require('./companies');
 
@@ -14,3 +14,12 @@ Companies.findOneAndUpdate(query, req.newData, {upsert:true}, function(err, doc)
 // Then generate pricelist(model specific) and print a bill with total amount as backend calculation.
 
 // Query to get all numberplates with specific model and store it in modelvehicles schema
+// var Vehicles = require('./vehicle');
+var Vehicle = mongoose.model('Vehicle', vehicleSchema);
+var xyz = new Vehicle({ numberplate: 'MH02CB1234', models:{company:'Maruti', category:'Sedan',models[model: }});
+var abc = new Vehicle({ numberplate: 'MH02CB1212', models:{company:'Honda', category:'Sedan',models[model: }});
+var def = new Vehicle({ numberplate: 'MH02CB1111', models:{company:'Maruti', category:'Hatchback',models[model: }});
+
+xyz.findSimilarCompany(function(err, xyz) {
+  console.log(xyz); 
+});
