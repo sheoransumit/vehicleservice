@@ -16,6 +16,10 @@ var vehicleSchema = new Schema({
 
 var Vehicle = mongoose.model('Vehicle', vehicleSchema);
 
+vehicleSchema.statics.findByNumberPlate = function(numberplate, cb) {
+  return this.find({ numberplate: new RegExp(numberplate, 'i') }, cb);
+};
+
 vehicleSchema.methods.findSameCompany = function(cb) {
   return this.model('Vehicle').find({ models.company: this.models.company }, cb);
 };
