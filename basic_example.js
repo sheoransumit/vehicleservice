@@ -1,3 +1,29 @@
+var CarCategories = mongoose.model('CarCategories', carmodelsSchema);
+
+// get all category elements for one company
+CarCategories.find({ 'company': 'Maruti' }, 'category', function (err, carCats) {
+  if (err) return handleError(err);
+  carCats.forEach(function (value) {
+  console.log('Category - %s Model - %s \n', value.cartype, value.carmodel);
+    });
+})
+// get all carmodel for one company and one cartype
+CarCategories.find({ 'company': 'Maruti' ,'category.cartype':'SUV' }, 'category.carmodel', function (err, carModels) {
+  if (err) return handleError(err);
+  carModels.forEach(function (value) {
+  console.log('Model - %s', value);
+    });
+})
+// get all carmodel for one cartype
+CarCategories.find({ 'category.cartype':'SUV' }, 'category.carmodel', function (err, carModels) {
+  if (err) return handleError(err);
+  carModels.forEach(function (value) {
+  console.log('Model - %s', value);
+    });
+})
+
+
+
 // First We add a company to companies, than category followed by model and vehicle registration.
 // var mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/test');
