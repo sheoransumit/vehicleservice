@@ -1,21 +1,24 @@
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/test');
+
 var CarCategories = mongoose.model('CarCategories', carmodelsSchema);
 
 // get all category elements for one company
-CarCategories.find({ 'company': 'Maruti' }, 'category', function (err, carCats) {
+CarCategories.find({ 'company': 'Maruti' }, 'cartype, carmodel', function (err, carCats) {
   if (err) return handleError(err);
   carCats.forEach(function (value) {
   console.log('Category - %s Model - %s \n', value.cartype, value.carmodel);
     });
 })
 // get all carmodel for one company and one cartype
-CarCategories.find({ 'company': 'Maruti' ,'category.cartype':'SUV' }, 'category.carmodel', function (err, carModels) {
+CarCategories.find({ 'company': 'Maruti' ,'cartype':'SUV' }, 'carmodel', function (err, carModels) {
   if (err) return handleError(err);
   carModels.forEach(function (value) {
   console.log('Model - %s', value);
     });
 })
 // get all carmodel for one cartype
-CarCategories.find({ 'category.cartype':'SUV' }, 'category.carmodel', function (err, carModels) {
+CarCategories.find({ 'cartype':'SUV' }, 'carmodel', function (err, carModels) {
   if (err) return handleError(err);
   carModels.forEach(function (value) {
   console.log('Model - %s', value);
@@ -23,21 +26,16 @@ CarCategories.find({ 'category.cartype':'SUV' }, 'category.carmodel', function (
 })
 
 var Vehicle = mongoose.model('Vehicle', vehicleSchema);
+// get all vehicles registered in 2016
+Vehicle.find({"created_on": {"$gte": new Date(2015, 12, 31), "$lt": new Date(2016, 12, 31)}}, function (err, vehicles) {
+  if (err) return handleError(err);
+  vehicles.forEach(function (value) {
+  console.log(value);
+    });
+})
 
 var CarBilling = mongoose.model('CarBilling', billingSchema);
 
-// First We add a company to companies, than category followed by model and vehicle registration.
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/test');
-
-var Companies = require('./companies');
-
-var query = {'companies.company':tesla};
-req.newData.companies.company = tesla;
-Companies.findOneAndUpdate(query, req.newData, {upsert:true}, function(err, doc){
-    if (err) return res.send(500, { error: err });
-    return res.send("succesfully saved");
-});
 
 // Insert These two for Instance Method to work
 // var xyz = new Vehicle({ numberplate: 'MH02CB1234', models:{company:'Maruti', category:'Sedan',models[model: }});
