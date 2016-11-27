@@ -35,8 +35,15 @@ Vehicle.find({"created_on": {"$gte": new Date(2015, 12, 31), "$lt": new Date(201
 })
 
 var CarBilling = mongoose.model('CarBilling', billingSchema);
+// get bills with denomination > 10000
+CarBilling.find({"total": {"$gte": 1000}}, function (err, bills) {
+  if (err) return handleError(err);
+  bills.forEach(function (value) {
+  console.log(value);
+    });
+})
 
-
+//*********************************************************************//
 // Insert These two for Instance Method to work
 // var xyz = new Vehicle({ numberplate: 'MH02CB1234', models:{company:'Maruti', category:'Sedan',models[model: }});
 // var abc = new Vehicle({ numberplate: 'MH02CB1212', models:{company:'Honda', category:'Sedan',models[model: }});
