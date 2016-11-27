@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
-var Models = require('./models');
+var Schema = mongoose.Schema;
 
 var vehicleSchema = new Schema({
-  _id: { type: String },
   date: {
     type: Date, 
     default: Date.now 
@@ -11,20 +10,5 @@ var vehicleSchema = new Schema({
     type: String,
     required: true 
   },
-  models: Models.modelsSchema
+  models: {type: Schema.ObjectId, ref: 'CarCategories'} // assuming you name your model CarCategories
 });
-
-var Vehicle = mongoose.model('Vehicle', vehicleSchema);
-
-vehicleSchema.statics.findByNumberPlate = function(numberplate, cb) {
-  return this.find({ numberplate: new RegExp(numberplate, 'i') }, cb);
-};
-
-vehicleSchema.methods.findSameCompany = function(cb) {
-  return this.model('Vehicle').find({ models.company: this.models.company }, cb);
-};
-vehicleSchema.methods.findSameCompanyandCategory = function(cb, de) {
-  return this.model('Vehicle').find({ models.company: this.models.company, models.category: this.models.category }, cb, de);
-};
-// module.exports = new mongoose.Schema(vehicleSchema);
-// module.exports.vehicleSchema = vehicleSchema;
