@@ -11,5 +11,5 @@ var vehicleSchema = new Schema({
     required: true 
   },
   models: {type: Schema.ObjectId, ref: 'CarCategories'}, // assuming you name your model CarCategories
-  bills: [{type: Schema.ObjectId, ref: 'CarBilling'}] // assuming you name your model CarCategories
+  bills: [{type: Schema.ObjectId, ref: 'CarBilling'}] // assuming you name your model CarBilling
 });
