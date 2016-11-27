@@ -6,14 +6,12 @@ var carmodelsSchema = new Schema{
 		type: String,
 		required: true
 	},
-	category: [{
-		cartype: {
-			type: String,
-			required: true
-		},
-		carmodel: {
-			type: String,
-			required: true
-		}
-	}]
+	cartype: {
+		type: String,
+		required: true
+	},
+	carmodel: {
+		type: String,
+		required: true
+	}
 };
