@@ -1,20 +1,20 @@
 var mongoose = require('mongoose');
-var Category = require('./categories');
+var Schema = mongoose.Schema;
 
-var pricelistSchema = {
-  _id: { type: String },
-  category: Category.categoriesSchema,
-  service: [{
+var pricelistSchema = new Schema{
+	model: {
+		type: Schema.ObjectId, 
+		ref: 'CarCategories'
+	}, 
+	// assuming you name your model CarCategories
+	service: [{
 	servicename: {
-	    type: String,
+		type: String,
 		required: true 
 		},
 	price: {
 		type: Number,
 		required: true
 	}
-  }]
+	}]
 };
-
-module.exports = new mongoose.Schema(pricelistSchema);
-module.exports.pricelistSchema = pricelistSchema;
