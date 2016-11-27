@@ -20,4 +20,9 @@ var billingSchema = new Schema({
   total:{
     type: String
   }
-};
+)};
+billingSchema.virtual('billing[]').set(function (total) {
+  billing.forEach(function (value) { 
+    this.total += value;
+  }
+});
