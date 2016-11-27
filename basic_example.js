@@ -22,7 +22,9 @@ CarCategories.find({ 'category.cartype':'SUV' }, 'category.carmodel', function (
     });
 })
 
+var Vehicle = mongoose.model('Vehicle', vehicleSchema);
 
+var CarBilling = mongoose.model('CarBilling', billingSchema);
 
 // First We add a company to companies, than category followed by model and vehicle registration.
 // var mongoose = require('mongoose');
