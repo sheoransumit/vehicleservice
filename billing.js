@@ -1,17 +1,12 @@
 var mongoose = require('mongoose');
-var Category = require('./categories');
+var Schema = mongoose.Schema;
 
-var billingSchema = {
-  _id: { type: String },
+var billingSchema = new Schema({
   date: {
     type: Date, 
     default: Date.now 
   },
-  numberplate: {
-    type: String,
-    required: true 
-  },
-  category: Category.categoriesSchema,
+  vehicle: {type: Schema.ObjectId, ref: 'Vehicle'}, // assuming you name your model Vehicle
   billing:[{
     service: {
       type: String,
@@ -26,6 +21,3 @@ var billingSchema = {
     type: String
   }
 };
-
-module.exports = new mongoose.Schema(billingSchema);
-module.exports.billingSchema = billingSchema;
