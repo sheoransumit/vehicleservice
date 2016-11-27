@@ -1,7 +1,7 @@
 # vehicleservice
-1. Enter Company, than category(hatchback,sedan etc) followed by model and vehicle registration.
-2. update pricelist with their corresponding services specific to car models.(car wash, engine oil, coolant, clutch, brake, tyre).
-3. (a)car wash will include only car-wash price;(b)basic-service for a particular model will include car wash, engine oil and coolant price;(c) repairs will indicate prices of all selected services.
+1. Carmodels schema design could include an array of a single document or for every company one document or different documents for one type, How do we optimize performance? Which one is better..
+2. Vehicles are registered with their number plate.
+3. different services and spare parts price list is maintained, model specific.
 4. print bill for individuals.
 5. Queries - 
 `get all vehicles of a particular model.
