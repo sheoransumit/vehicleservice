@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var pricelistSchema = new Schema{
-	model: {
+	carmodel: {
 		type: Schema.ObjectId, 
 		ref: 'CarCategories'
 	}, 
@@ -12,7 +12,7 @@ var pricelistSchema = new Schema{
 		type: String,
 		required: true 
 		},
-	price: {
+	serviceprice: {
 		type: Number,
 		required: true
 	}
